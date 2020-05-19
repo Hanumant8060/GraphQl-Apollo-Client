@@ -1,7 +1,8 @@
 import React from 'react'
 import { Component } from 'react';
 import { Mutation } from 'react-apollo'
-import gql from 'graphql-tag'
+import {gql} from 'apollo-boost'
+import {graphql} from 'react-apollo'
 import AllCourses from './AllCourses';
 import {
   Navbar, NavbarBrand, Nav, NavItem, NavLink, Card, CardBody, CardTitle, CardSubtitle, CardText, Button
@@ -24,6 +25,25 @@ class CreateVehicle extends Component {
     modelCode: '',
     brandName: ''
   }
+
+  // DeleteVehicle = () => {
+  //   this.props
+  //     .mutate({
+  //       refetchQueries: [{
+  //         query: vehicles
+  //       }],
+  //       variables: {
+  //         id: this.id
+  //       },
+  //     })
+  //     .then(({ data }) => {
+  //       console.log(' RESPONSE', data);
+  //     })
+  //     .catch(error => {
+  //       console.log(' ERROR', error);
+  //     });
+  // }
+
 
   render() {
     const { type, modelCode, brandName } = this.state

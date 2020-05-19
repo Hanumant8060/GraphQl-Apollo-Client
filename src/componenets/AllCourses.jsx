@@ -1,7 +1,8 @@
 /* eslint-disable*/
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
+import {gql} from 'apollo-boost'
+import {graphql} from 'react-apollo'
 import { Mutation } from 'react-apollo'
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 
@@ -9,6 +10,7 @@ const POST_MUTATION = gql`
 mutation deleteVehicle($id:Int!) {
   deleteVehicle(id:$id) {
       id
+      type
   }
 }
 `
@@ -36,8 +38,8 @@ const AllCourses = (props) => (
                   <CardTitle className="h3 mb-1 pt-2 font-weight-bold">{` name of vehicle   ==>${brandName}  model  ${modelCode}`}</CardTitle>
                 </div>
               </CardBody>
-              <Mutation mutation={POST_MUTATION} variables={{ id, type, modelCode, brandName }}>
-                {postMutation => <Button className="ml3" variant="dark" onClick={postMutation}>DELETE</Button>}
+              <Mutation mutation={POST_MUTATION}>
+                {mutation => <Button className="ml3" variant="dark" onClick={()=>mutation({variables:{id:id}})}>DELETE</Button>}
               </Mutation>
             </Card>
           </div>
